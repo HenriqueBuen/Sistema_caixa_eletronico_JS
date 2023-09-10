@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        var saldo = 100; // saldo que o usuário tem na conta
+
+        
+
+
+        var nome = (prompt ("Seja Bem-vindo, por favor nos informe o seu nome. ")); // pedindo para o usuário informar o nome 
+            alert("Olá " + nome + ", é um prazer revê-lo por aqui");
+           
+
+
+        function  inicio() {   //menu principal 
+
+            var escolha = parseInt(prompt("Escolha as opções. (1- saldo), (2- extrato), (3-saque), (4- deposito), (5- tranferência), (6- sair)"));
+           
+            if (escolha === 1 ) {
+                ver_saldo();
+            }
+
+            else if (escolha === 2) {
+                ver_extrato();
+            }
+
+            else if (escolha === 3) {
+                fazer_saque();
+            }
+            else if (escolha === 4) {
+                fazer_deposito();
+            }
+
+            else if (escolha === 5) {
+                fazer_transferencia();
+            }
+
+            else if (escolha === 6) {
+                sair();
+            }
+
+            else{
+                erro();
+            }
+
+        }
+
+        function ver_saldo() { //visualização de saldo
+
+            var senha3= parseInt(prompt("Informe a sua senha: "));
+
+            if (senha3 == 3589){
+                alert("Seu saldo atual é:  " + saldo);
+                inicio();
+            }
+
+            else if (senha3 != 3589) {
+                alert("Senha Inválida");
+                ver_saldo();
+            }
+            
+        } //final ver saldo
+
+        function ver_extrato () { //Extrado do usuário com a senha 
+
+        var senha= parseInt(prompt("Informe a sua senha: "));
+
+            if (senha == 3589) {
+                alert("tranferência: 35,90.  deposito feito: 40,00.    compra efetuada: 550,00" );
+                inicio();
+            }
+
+            
+
+            else if (senha != 3589) {
+                alert("Senha Inválida");
+                ver_extrato();
+            }
+        } //final ver extrato
+
+
+        function fazer_saque () {
+
+            var senha2= parseInt(prompt("Informe a sua senha: "));
+
+             if (senha2 != 3589) {
+                alert("Senha Inválida");
+                fazer_saque();
+            }
+
+           
+            else if (senha2 == 3589) {
+
+                
+
+                var saque = parseFloat(prompt("Qual o valor para saque ?"));
+                
+                 if (saque > saldo) 
+                alert("Operação não realizada");
+            
+
+            else if (saque < saldo) 
+                saldo = saldo - saque;
+                ver_saldo();
+            
+            }
+
+          
+
+        } //final fazer saque
+
+        
+        function fazer_deposito () {
+
+            var senha4= parseInt(prompt("Informe a sua senha: "));
+
+
+             if (senha4 != 3589) {
+                alert("Senha inválida")
+                fazer_deposito();
+            }
+
+            else if (senha4 == 3589) {
+                var deposito = parseFloat(prompt("Informe o valor de deposito"));
+
+                if(deposito <= 0) {
+                    alert("Operação não realizada");
+                    fazer_deposito();
+                }
+                else if (deposito >0) {
+                    saldo = saldo + deposito;
+                    ver_saldo();
+                }
+                
+            }
+
+        
+        } //final fazer deposito
+
+        function fazer_transferencia () {
+
+            var senha5 = parseInt(prompt("Informe a sua senha: "));
+
+            if (senha5 != 3589) {
+                alert("Senha inválida")
+                fazer_transferencia();
+            }
+        
+            else if (senha5 == 3589) {
+                var tranferencia = parseFloat(prompt("Informe o número da conta que deseja fazer a tranferência"));
+
+
+                if (isNaN (tranferencia) || tranferencia === "") {
+                alert("Informe apenas  números");
+                fazer_transferencia();
+            }
+
+
+                var v_transferencia = parseFloat (prompt("Informe o valor que deseja transferir"));
+            
+
+                if(saldo < v_transferencia){
+                    alert("Operação não realizada");
+                    fazer_transferencia()
+                }
+               else if (v_transferencia<saldo){
+                saldo = saldo - v_transferencia;
+                alert("Sua transferência no valor de " + v_transferencia + (" R$ Foi realizada para a conta: " + tranferencia));
+                ver_saldo();
+            }
+
+                 
+            
+
+            
+
+                
+            }
+
+
+            }
+
+            
+
+            
+
+            
+
+          
+         //final fazer tranferência
+
+        function sair () {
+            var confirma = confirm("Você deseja sair ?")
+            if (confirma) {
+                
+                alert( nome + ", foi um prazer ter você por aqui !");
+
+                window.close() ;
+            }
+            else {
+                inicio();
+            }
+        } //final sair 
+        
+        function erro () {
+            alert("Por favor informe um número entre 1 e 6. ");
+            inicio();
+        } //final erro
+        
+        inicio();
+
+    </script>
+
+
+</head>
+<body>
+    
+</body>
+</html>
